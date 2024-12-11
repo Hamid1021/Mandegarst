@@ -7,7 +7,7 @@ from blog.utils import blog_paginator
 
 def Blogs(request):
     # تعداد نتایج در هر صفحه برای نمایش تعداد اخبار در لیست اخبار
-    results_per_page = 5
+    results_per_page = 4
     # دریافت شماره صفحه : اطلاعات در هر صفحه به مقدار معینی نمایش داده می شود
     page = request.GET.get("p")
     # دریافت همه اخبار بر اساس وضعیت انتشار و ذخیره سازی آنها

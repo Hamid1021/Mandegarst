@@ -1,5 +1,6 @@
 import os
 from datetime import datetime
+import jdatetime
 
 from extensions import jalali
 from django.utils import timezone
@@ -12,6 +13,7 @@ def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(base_name)
     return name, ext
+
 
 
 class SendEmail(object):
@@ -111,6 +113,15 @@ def jalali_converter(time):
     return persian_numbers_converter(output)
 
 
+def jalali_converter_date(time):
+    time_to_str = f"{time.year},{time.month},{time.day}"
+    time_to_tuple = jalali.Gregorian(time_to_str).persian_tuple()
+    mon = time_to_tuple[1] if time_to_tuple[1] > 9 else "0" + str(time_to_tuple[1])
+    day = time_to_tuple[2] if time_to_tuple[2] > 9 else "0" + str(time_to_tuple[1])
+    output = f"{time_to_tuple[0]}/{mon}/{day}"
+    return persian_numbers_converter(output)
+
+
 def jalali_converter_en(time):
     time = timezone.localtime(time)
     time_to_str = f"{time.year},{time.month},{time.day}"
@@ -133,6 +144,23 @@ def jalali_get_day(time):
     output = f"{time_to_tuple[2]}"
 
     return persian_numbers_converter(output)
+
+
+def jalali_get_day_title(dt):
+    day_map = {
+        "Saturday": "شنبه",
+        "Sunday": "یکشنبه",
+        "Monday": "دوشنبه",
+        "Tuesday": "سه‌شنبه",
+        "Wednesday": "چهارشنبه",
+        "Thursday": "پنجشنبه",
+        "Friday": "جمعه",
+    }
+    jalali_date = jdatetime.datetime.fromgregorian(datetime=dt)
+
+    jalali_day_name = jalali_date.strftime('%A')
+
+    return day_map[jalali_day_name]
 
 
 def jalali_get_month(time):
@@ -193,3 +221,8 @@ def gregorian_converter(time:str):
     year, month, day = jalali.Persian(time.split(" ")[0]).gregorian_tuple()
     hour, minute, second = [int(i) for i in time.split(" ")[1].split(":")]
     return datetime(year, month, day, hour, minute, second)
+
+
+def gregorian_converter_date(time:str):
+    year, month, day = jalali.Persian(*[int(x) for x in time.split("/")]).gregorian_tuple()
+    return datetime(year, month, day, 0, 0, 0)
