@@ -27,7 +27,7 @@ def single_game(request, game_id, game_name):
 
 def all_games(request):
     result_per_page = 6
-    games_list = Game.objects.all()
+    games_list = Game.objects.filter(publish_status="p")
     paginator = Paginator(games_list, result_per_page)  # Show 10 games per page
     top_banner = Banner.objects.get_first_top_banner()
     page_number = request.GET.get('page')
