@@ -1,0 +1,28 @@
+{% load static %}
+<div class="row my-4 mx-10 ">
+    <div class="card mb-3 p-0 br-13 shadow ">
+        <div class="row g-0">
+            <div class="col-md-4">
+                {% if object.blog_photo %}
+                    <img src="{{ object.blog_photo.url }}" class="w-100 h-100 rounded-start1" alt="{{ object.title }}">
+                    {% else %}
+                    <img class="w-100 h-100 rounded-start1" src="{% static 'No_Photo.png' %}" alt="{{ object.title }}">
+                {% endif %}
+            </div>
+
+            <div class="col-md-8 px-md-5">
+                <div class="card-body">
+                    <h4 class="card-title text-secondary-emphasis pb-2 ">{{ object.title }}</h4>
+                    <p class="card-text">{{ object.short_description|safe|striptags|truncatechars:75 }}</p>
+                </div>
+                <div class="d-flex justify-content-end text-body-secondary mt-2">
+                    <a href="{% url 'blog:single_blog' object.id object.slug %}">
+                         <small class="text-body-secondary ">
+                            ادامه مطلب
+                        </small></a>
+                    <i class="bi bi-arrow-left mx-2"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
