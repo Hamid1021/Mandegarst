@@ -1,0 +1,98 @@
+{% extends "base/base.html" %} {% load static %}
+
+{% block title %}خانه{% endblock title %}
+
+{% block main %}
+<!-- Home section start -->
+<section class="home container " id="home">
+    {% if top_banner.game.photo %}
+    <img src="{{ top_banner.game.photo.url}}" alt="{{ top_banner.game.game_name }}">
+    {% else %}
+    <img src="{% static 'No_Photo.png' %}" alt="No Image">
+    {% endif %}
+    <div class="home-text">
+        <h1>{{ top_banner.game.game_name }}</h1>
+        <a href="{% url 'application:single_game' top_banner.game.pk top_banner.game.game_name %}" class="btn">همین الان ببین </a>
+    </div>
+</section>
+<!-- Home section stop -->
+<!-- Trending section start-->
+<section class="trending container" id="trending">
+    <div class="heading">
+        <i class="bx bxs-flame"></i>
+        <h2> پر امتیاز ترین ها </h2>
+    </div>
+    <!-- Content-->
+    <div class="trending-content swiper">
+        <div class="swiper-wrapper">
+            <!-- slider -->
+            {% for object in highest_rate %}
+            <a href="{% url 'application:single_game' object.pk object.game_name %}">
+                <div class="swiper-slide">
+                    <div class="box">
+                        {% if object.photo %}
+                        <img src="{{ object.photo.url}}" alt="{{ object.game_name }}">
+                        {% else %}
+                        <img src="{% static 'No_Photo.png' %}" alt="No Image">
+                        {% endif %}
+                        <div class="box-text">
+                            <h2>{{ object.game_name }}</h2>
+                            <h3>{{ object.game_genre }}</h3>
+                            <div class="rating-download">
+                                <div class="rating">
+                                    <i class="bx bxs-star"></i>
+                                    <span>{{ object.rate_score }}</span>
+                                </div>
+                                <a href="{% url 'application:single_game' object.pk object.game_name %}" class="box-btn"> <i class="bx bx-down-arrow-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+            <!-- slider -->
+        </div>
+    </div>
+
+</section>
+<!-- Ending of the trenidng functiion-->
+<!-- New Section start-->
+<section class="new container" id="new">
+    <div class="heading">
+        <i class="bx bxs-game"></i>
+        <h2> بازی های تازه </h2>
+    </div>
+    <!--Content-->
+    <div class="new-content">
+        <!--box -->
+        
+        {% for object in latest_game %}
+        <div class="box">
+            {% if object.photo %}
+            <img src="{{ object.photo.url}}" alt="{{ object.game_name }}">
+            {% else %}
+            <img src="{% static 'No_Photo.png' %}" alt="No Image">
+            {% endif %}
+            <div class="box-text">
+                <h2>{{ object.game_name }}</h2>
+                <h3>{{ object.game_genre }}</h3>
+                <div class="rating-download">
+                    <div class="rating">
+                        <i class="bx bxs-star"></i>
+                        <span>{{ object.rate_score }}</span>
+                    </div>
+                    <a href="{% url 'application:single_game' object.pk object.game_name %}" class="box-btn"> <i class="bx bx-down-arrow-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!--box -->
+    </div>
+
+    <div class="next-page">
+        <a href="{% url 'application:all_games' %}">مشاهده همه</a>
+    </div>
+</section>
+<!-- New section end -->
+{% endblock main %}

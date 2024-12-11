@@ -1,0 +1,38 @@
+{% load static %}<!DOCTYPE html>
+<html dir="rtl" lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Gaming website{% endblock title %}</title>
+    <!-- #faviocon -->
+    <link rel="shortcut icon" href="{% static 'main_site/img/logo.jpg' %}" type="image/x-icon">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="{% static 'main_site/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'main_site/css/style.css' %}">
+    {% block ex_style %}{% endblock ex_style %}
+</head>
+
+<body>
+    <!-- Custom scroll bar-->
+    <div class="progress">
+        <div class="progress-bar" id="scroll-bar"></div>
+
+    </div>
+    <!-- Header -->
+    {% include "base/header.html" %}
+    
+    {% block main %}{% endblock main %}
+
+    <!-- copyright -->
+    <div class="copyright container">
+        <a href="{% url 'application:home' %}" class="logo">Game<span>mandegar </span></a>
+        <p>&copy; hani</p>
+    </div>
+
+    <script src="{% static 'main_site/js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'main_site/js/main.js' %}"></script>
+</body>
+
+</html>

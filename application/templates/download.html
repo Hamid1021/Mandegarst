@@ -1,0 +1,75 @@
+{% extends "base/base.html" %} {% load static %}
+
+{% block title %}{{ object.game_name }}{% endblock title %}
+
+{% block ex_style %}
+<!-- style css -->
+<link rel="stylesheet" href="{% static 'main_site/css/bootstrap.rtl.min.css' %}" />
+{% endblock ex_style %}
+
+{% block main %}
+    <div class=" my-5 con container  ">
+      <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            {% if object.photo %}
+            <img src="{{ object.photo.url}}" class="d-block w-100 wi" alt="{{ object.game_name }}">
+            {% else %}
+            <img src="{% static 'No_Photo.png' %}" alt="No Image">
+            {% endif %}
+          </div>
+          <div class="carousel-item">
+            {% if object.photo %}
+            <img src="{{ object.photo.url}}" class="d-block w-100 wi" alt="{{ object.game_name }}">
+            {% else %}
+            <img src="{% static 'No_Photo.png' %}" alt="No Image">
+            {% endif %}
+          </div>
+          <div class="carousel-item">
+            {% if object.photo %}
+            <img src="{{ object.photo.url}}" class="d-block w-100 wi" alt="{{ object.game_name }}">
+            {% else %}
+            <img src="{% static 'No_Photo.png' %}" alt="No Image">
+            {% endif %}
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    <!-- About -->
+    <div class="about container">
+        <h2 class="text-white"> درباره ی بازی </h2>
+        <p class="text-white">{{ object.game_description }}</p>
+
+    </div>
+
+    <!-- Download -->
+    <div class="download">
+        {% if object.text_link_android or object.text_link_ios or object.text_link_win %}
+        <h2 class="text-white">لینک دانلود ها   </h2>
+        {% endif %}
+        <div class="download-links">
+            {% if object.text_link_android %}
+            <a href="{{ object.text_link_android }}" download="">for Android</a>
+            {% endif %}
+            
+            {% if object.text_link_ios %}
+            <a href="{{ object.text_link_ios }}">For IOS</a>
+            {% endif %}
+            
+            {% if object.text_link_win %}
+            <a href="{{ object.text_link_win }}">For Windows</a>
+            {% endif %}
+        </di
+        v>
+
+    </div>
+
+    </div>
+{% endblock main %}

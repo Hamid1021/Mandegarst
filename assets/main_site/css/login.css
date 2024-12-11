@@ -1,0 +1,160 @@
+@font-face {
+    font-family: "IRANYekan";
+    src: url("../fonts/IRANYekanMobileMedium.ttf");
+}
+
+
+:root {
+    --color-blue: #80c5ec;
+    --color-dark: #4d4d4a;
+    --color-gray: #f0f0f0;
+
+}
+
+body {
+    margin: 0;
+    font-family: "IRANYekan" !important;
+    background-image: url(../img/light.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+ 
+}
+  
+
+
+@media (max-width: 764px) {
+    body {
+        margin: 0;
+        font-family: "IRANYekan" !important;
+        background-image: url(../img/light.jpg);
+      background-size: 263%;
+      background-repeat: no-repeat;
+      background-position-y: center;
+     
+    }
+  }
+
+.shadow-text{
+text-shadow: 0.9px 3.6px 6.3px  white;
+}
+
+.shadow-text1{
+    text-shadow:  1px 4px 7px  white;
+    }
+.section-2{
+    background: rgba(32, 32, 32, 0.7);
+    backdrop-filter: blur(4px);
+    padding: 20px;
+    border-radius: 9px;
+}
+.lw{
+    /* width: 343px; */
+    background-color: #D9D9D9;
+    text-align: end;
+    border-radius: 8PX !important;
+}
+.lww{
+    background-color: #d9d9d900 !important; 
+    border-bottom: 1px solid #ffffff !important;
+    text-align: end;
+    border-radius: 0px !important;
+    border: none;
+    color: #ffffff !important;
+  position: sticky;
+
+}
+.lww::placeholder{
+    color: #ffffff;
+ 
+}
+
+.input-container {
+    position: relative;
+    margin: 20px 0;
+}
+
+.input-field {
+    outline: none; /* حذف حاشیه آبی */
+}
+
+.form-control1 {
+    display: block;
+    width: 100%;
+    padding: 10px 10px ;
+    font-size: 24px;
+    font-weight: 400;
+    text-align: center;
+    }
+.input-field:focus {
+    border-color: #00000000; /* تغییر رنگ حاشیه در حالت فوکوس */
+}
+.flex-direction-row-reverse{
+    flex-direction: row-reverse !important;
+}
+.placeholder {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #aaa;
+    transition: all 0.3s ease;
+    z-index:-1;
+    background-color: #fff0;
+}
+
+ .input-field:focus + .placeholder,
+.input-field:not(:placeholder-shown) + .placeholder {
+    top: -10px;
+    right: 10px;
+    font-size: 16px;
+    color: #0d6efd;
+    font-weight: bold;
+}
+    .lww:focus {
+    border-bottom: 1px solid #0d6efd !important;
+}
+
+.hidden {
+    display: none;
+}
+.br{
+    border-radius: 8PX !important;
+
+}
+
+.my-6{
+    margin-top: 117px;
+}
+.password-container {
+    position: relative;
+}
+
+.password-container .show-password {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+.w-90{
+    width: 90%;
+}
+.w-sm-100{
+    width: 28%;
+}
+
+@media (max-width: 1092px) {
+    .w-sm-100{
+        width: 50% !important;
+    }
+  }
+@media (max-width: 764px) {
+    .w-sm-100{
+        width: 100% !important;
+    }
+  }
+
+

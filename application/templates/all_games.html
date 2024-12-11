@@ -1,0 +1,123 @@
+{% extends "base/base.html" %} {% load static %}
+
+{% block title %}همه بازی ها{% endblock title %}
+
+{% block ex_style %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    h1 {
+        text-align: center;
+    }
+    .list-group {
+        list-style: none;
+        padding: 0;
+    }
+    .list-group-item {
+        background-color: #f9f9f9;
+        margin: 10px 0;
+        padding: 15px;
+        border: 1px solid #ddd;
+    }
+    .pagination {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .pagination a, .pagination span {
+        margin: 0 5px;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: #007bff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .pagination .current {
+        font-weight: bold;
+        background-color: #007bff;
+        color: white;
+    }
+    .pagination .disabled {
+        color: #fff;
+    }
+</style>
+{% endblock ex_style %}
+
+{% block main %}
+<!-- Home section start -->
+<section class="home container " id="home">
+    {% if top_banner.game.photo %}
+    <img src="{{ top_banner.game.photo.url}}" alt="{{ top_banner.game.game_name }}">
+    {% else %}
+    <img src="{% static 'No_Photo.png' %}" alt="No Image">
+    {% endif %}
+    <div class="home-text">
+        <h1>{{ top_banner.game.game_name }}</h1>
+        <a href="{% url 'application:single_game' top_banner.game.pk top_banner.game.game_name %}" class="btn">همین الان ببین </a>
+    </div>
+</section>
+
+<!-- New Section start-->
+<section class="new container" id="new">
+    <!--Content-->
+    <div class="new-content">
+        <!--box -->
+        
+        {% for object in page_obj %}
+        <div class="box">
+            {% if object.photo %}
+            <img src="{{ object.photo.url}}" alt="{{ object.game_name }}">
+            {% else %}
+            <img src="{% static 'No_Photo.png' %}" alt="No Image">
+            {% endif %}
+            <div class="box-text">
+                <h2>{{ object.game_name }}</h2>
+                <h3>{{ object.game_genre }}</h3>
+                <div class="rating-download">
+                    <div class="rating">
+                        <i class="bx bxs-star"></i>
+                        <span>{{ object.rate_score }}</span>
+                    </div>
+                    <a href="{% url 'application:single_game' object.pk object.game_name %}" class="box-btn"> <i class="bx bx-down-arrow-alt"></i></a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!--box -->
+    </div>
+
+    <div dir="ltr" class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo;&laquo;</a>
+            <a href="?page={{ page_obj.previous_page_number }}">&laquo;</a>
+        {% else %}
+            <span class="disabled">&laquo;&laquo;</span>
+            <span class="disabled">&laquo;</span>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+                <span class="current">{{ num }}</span>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                <a href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">&raquo;</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">&raquo;&raquo;</a>
+        {% else %}
+            <span class="disabled">&raquo;</span>
+            <span class="disabled">&raquo;&raquo;</span>
+        {% endif %}
+    </div>
+</section>
+<!-- New section end -->
+{% endblock main %}

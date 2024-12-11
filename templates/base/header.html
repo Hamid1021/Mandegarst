@@ -1,0 +1,42 @@
+{% load static %}
+<header>
+    <div class="nav container">
+        <!-- Logo -->
+        <a href="{% url 'application:home' %}" class="logo aline-end">Game<span class="px-2">mandegar </span></a>
+        <div class="nav-icons">
+            <i class="bx bx-bell" id="bell-icon"><span></span></i>
+            <a href="#"><i class="bi bi-person-circle bx"></i></a>
+            <div class="menu-icon">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+
+        <!-- menu -->
+        <div class="menu">
+            <img src="{% static 'main_site/img/menu.png' %}" alt="">
+            <div class="navbar">
+                <li><a href="{% url 'application:home' %}">خانه </a> </li>
+                <li><a href="{% url 'application:all_games' %}">لیست همه بازی ها</a></li>
+                <li><a href="{% url 'application:online_game_all' %}">بازی آنلاین </a></li>
+                <li><a href="#l">مقالات </a></li>
+                <li><a href="#">درباره ی ما </a></li>
+            </div>
+        </div>
+        <!-- notifications-->
+        <div class="notification">
+            <div class="notification-box">
+                <i class="bx bxs-check-circle"> </i>
+                <p> دانلود بازی های تازه </p>
+            </div>
+            <div class="notification-box">
+                <i class="bx bxs-x-circle"> </i>
+                <a class="text-white" href="#">
+                    <p> جهت دربافت کد پریمیوم کلیک کنید </p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+</header>
