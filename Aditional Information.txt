@@ -1,0 +1,3 @@
+Mandegarst
+git clone https://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@github.com/Hamid1021/Mandegarst.git
+"C:\Program Files\Python312\python.exe"|"F:\Mandegarst\wfastcgi.py"
