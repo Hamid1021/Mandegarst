@@ -1,8 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from application.models import Game, Banner
 from django.core.paginator import Paginator
-from django.shortcuts import render, get_object_or_404
-from .models import Game
 
 
 def home(request):
@@ -44,24 +42,3 @@ def online_game_all(request):
 
     }
     return render(request, "online_game.html", context)
-
-
-def online_game_one(request):
-    context = {
-
-    }
-    return render(request, "05-Guess-My-Number/index.html", context)
-
-
-def online_game_tow(request):
-    context = {
-
-    }
-    return render(request, "07-Pig-Game/index.html", context)
-
-
-def online_game_three(request):
-    context = {
-
-    }
-    return render(request, "snake-master/index.html", context)

@@ -20,9 +20,17 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('account.urls', namespace="account")),
     path('', include('application.urls', namespace="application")),
+    path('', include('about.urls', namespace="about")),
+    path('article/', include('blog.urls', namespace="blog")),
+    path('', include('premium.urls', namespace="premium")),
+
     # ckeditor
     path('ckeditor/', include('ckeditor_uploader.urls')),
 
+    # Games
+    path('Guess_My_Number/', include('Guess_My_Number.urls', namespace="Guess_My_Number")),
+    path('Pig_Game/', include('Pig_Game.urls', namespace="Pig_Game")),
+    path('Snake_Master/', include('Snake_Master.urls', namespace="Snake_Master")),
 ]
 
 from django.conf import settings
